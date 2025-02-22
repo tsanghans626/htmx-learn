@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>HtmxLearn</title>
+    <script
+      src="https://unpkg.com/htmx.org@2.0.4"
+      integrity="sha384-HGfztofotfshcF7+8n44JQL2oJmowVChPTg48S+jvZoztPfvwD79OC/LTtG6dMp+"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <div>
+      <a href="blog">Blog</a>
+    </div>
+    <hr />
+    <button
+      hx-post="/clicked"
+      hx-trigger="click"
+      hx-target="#parent-div"
+      hx-swap="outerHTML"
+    >
+      Click Me!
+    </button>
+    <div id="parent-div"></div>
+    <hr />
+    <button hx-put="/messages">Put To Messages</button>
+    <hr />
+    <div hx-post="/mouse_entered" hx-trigger="mouseenter">
+      [Here Mouse, Mouse!]
+    </div>
+    <hr />
+    <div hx-post="/mouse_entered" hx-trigger="mouseenter once">
+      [Here Mouse, Mouse!]
+    </div>
+    <hr />
+    <input
+      type="text"
+      name="q"
+      hx-get="/trigger_delay"
+      hx-trigger="keyup changed delay:500ms"
+      hx-target="#search-results"
+      placeholder="Search..."
+    />
+    <div id="search-results"></div>
+    <hr />
+    <div hx-get="/clicked" hx-trigger="click[ctrlKey]">
+      Control Click Me（Mac 无法复现）
+    </div>
+    <hr />
+    <div hx-get="/load" hx-trigger="load">load trigger</div>
+    <hr />
+    <div hx-get="/revealed" hx-trigger="revealed">revealed trigger</div>
+    <hr />
+    <div hx-get="/intersect" hx-trigger="intersect">intersect trigger</div>
+    <hr />
+    <div hx-get="/news" hx-trigger="every 2s">polling trigger</div>
+    <hr />
+    <div hx-get="/messages" hx-trigger="load delay:1s" hx-swap="outerHTML">
+      load polling trigger
+    </div>
+  </body>
+</html>
