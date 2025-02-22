@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "main": "index.mjs",
   "scripts": {
-    "serve": "nodemon index.cjs",
+    "dev": "nodemon index.cjs",
+    "serve": "node index.cjs",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",

@@ -22,7 +22,7 @@ app.post("/mouse_entered", (req, res) => {
 });
 app.get("/trigger_delay", (req, res) => {
   console.log("post trigger_delay from htmx");
-  res.send(req.query);
+  res.send(`<div>${JSON.stringify(req.query)}</div>`);
 });
 app.get("/clicked", (req, res) => {
   console.log("get clicked from htmx");
@@ -55,6 +55,41 @@ app.get("/messages", (req, res) => {
       "</div>"
   );
 });
-
+app.get("/click", (req, res) => {
+  console.log("get click from htmx");
+  res.send("Click Me!(triggered)");
+});
+app.get("/example", (req, res) => {
+  console.log("morph swap from htmx");
+  const now = new Date();
+  res.send(`<div>example${now.toLocaleTimeString()}</div>`);
+});
+app.get("/transition", (req, res) => {
+  console.log("transition from htmx");
+  res.send("transition(triggered)");
+});
+app.get("/swap", (req, res) => {
+  console.log("swap from htmx");
+  res.send("swap(triggered)");
+});
+app.get("/settle", (req, res) => {
+  console.log("settle from htmx");
+  res.send("settle(triggered)");
+});
+app.get("/ignoreTitle", (req, res) => {
+  console.log("ignoreTitle from htmx");
+  res.send("<title>new title</title>" + "<span>ignoreTitle(triggered)</span>");
+});
+app.post("/store", (req, res) => {
+  res.send("store(triggered)");
+});
+app.post("/validate", (req, res) => {
+  res.send("validate(triggered)");
+});
+app.post("/example", (req, res) => {
+  console.log("morph swap from htmx");
+  const now = new Date();
+  res.send(`<div>example${now.toLocaleTimeString()}</div>`);
+});
 app.listen(3000);
 console.log("listening on port 3000");

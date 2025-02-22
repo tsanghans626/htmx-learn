@@ -9,6 +9,11 @@
       integrity="sha384-HGfztofotfshcF7+8n44JQL2oJmowVChPTg48S+jvZoztPfvwD79OC/LTtG6dMp+"
       crossorigin="anonymous"
     ></script>
+    <script
+      src="https://unpkg.com/idiomorph@0.3.0"
+      integrity="sha384-tg/2Ca9U/RohyxmGCb8qJVR3j9cswtKbdRSXOaPX/aDDOW1bfbeyV+7G9ifYF4bC"
+      crossorigin="anonymous"
+    ></script>
   </head>
   <body>
     <div>
@@ -55,10 +60,164 @@
     <hr />
     <div hx-get="/intersect" hx-trigger="intersect">intersect trigger</div>
     <hr />
-    <div hx-get="/news" hx-trigger="every 2s">polling trigger</div>
+    <!-- <div hx-get="/news" hx-trigger="every 2s">polling trigger</div>
     <hr />
     <div hx-get="/messages" hx-trigger="load delay:1s" hx-swap="outerHTML">
       load polling trigger
     </div>
+    <hr /> -->
+    <button hx-get="/click">
+      Click Me!（没有显示点击转圈的效果）
+      <img class="htmx-indicator" src="/img/circles.svg" />
+    </button>
+    <hr />
+    <input
+      type="text"
+      name="q"
+      hx-get="/trigger_delay"
+      hx-trigger="keyup delay:500ms changed"
+      hx-target="#search-results2"
+      placeholder="Search..."
+    />
+    <div id="search-results2"></div>
+    <hr />
+    <input
+      type="text"
+      name="q"
+      hx-get="/trigger_delay"
+      hx-trigger="keyup delay:500ms changed"
+      hx-target="#search-afterbegin"
+      hx-swap="afterbegin"
+      placeholder="afterbegin Search..."
+    />
+    <div id="search-afterbegin"></div>
+    <hr />
+    <input
+      type="text"
+      name="q"
+      hx-get="/trigger_delay"
+      hx-trigger="keyup delay:500ms changed"
+      hx-target="#search-beforebegin"
+      hx-swap="beforebegin"
+      placeholder="beforebegin Search..."
+    />
+    <div id="search-beforebegin"></div>
+    <hr />
+    <input
+      type="text"
+      name="q"
+      hx-get="/trigger_delay"
+      hx-trigger="keyup delay:500ms changed"
+      hx-target="#search-beforeend"
+      hx-swap="beforeend"
+      placeholder="beforeend Search..."
+    />
+    <div id="search-beforeend"></div>
+    <hr />
+    <input
+      type="text"
+      name="q"
+      hx-get="/trigger_delay"
+      hx-trigger="keyup delay:500ms changed"
+      hx-target="#search-afterend"
+      hx-swap="afterend"
+      placeholder="afterend Search..."
+    />
+    <div id="search-afterend"></div>
+    <hr />
+    <input
+      type="text"
+      name="q"
+      hx-get="/trigger_delay"
+      hx-trigger="keyup delay:500ms changed"
+      hx-target="#search-delete"
+      hx-swap="delete"
+      placeholder="delete Search..."
+    />
+    <div id="search-delete"></div>
+    <hr />
+    <input
+      type="text"
+      name="q"
+      hx-get="/trigger_delay"
+      hx-trigger="keyup delay:500ms changed"
+      hx-target="#search-none"
+      hx-swap="none"
+      placeholder="none Search..."
+    />
+    <div id="search-none"></div>
+    <hr />
+    <button hx-get="/example" hx-swap="morph">Morph My Outer HTML</button>
+    <hr />
+    <button hx-get="/example" hx-swap="morph:outerHTML">
+      Morph My Outer HTML
+    </button>
+    <hr />
+    <button hx-get="/example" hx-swap="morph:innerHTML">
+      Morph My Inner HTML
+    </button>
+    <hr />
+    <button hx-get="/transition" hx-swap="morph:innerHTML transition:true">
+      transition
+    </button>
+    <hr />
+    <button hx-get="/swap" hx-swap="morph:innerHTML swap:100ms">
+      swap（设定交换延迟）
+    </button>
+    <hr />
+    <button hx-get="/settle" hx-swap="morph:innerHTML swap:100ms">
+      settle（设定稳定延迟）
+    </button>
+    <hr />
+    <button hx-get="/ignoreTitle" hx-swap="morph:innerHTML ignoreTitle:true">
+      ignoreTitle
+    </button>
+    <hr />
+    <div
+      style="height: 200px; overflow: scroll"
+      hx-get="/example"
+      hx-swap="beforeend scroll:bottom"
+    >
+      Get Some HTML & Append It & Scroll To Bottom
+    </div>
+    <hr />
+    <div
+      hx-get="/example"
+      hx-swap="beforeend innerHTML  show:top"
+      hx-target="#another-div"
+    >
+      Get Some Content
+    </div>
+    <div id="another-div"></div>
+    <hr />
+    <form hx-post="/store" hx-swap="none">
+      <input
+        id="title"
+        name="title"
+        type="text"
+        hx-post="/validate"
+        hx-trigger="change"
+        hx-swap="none"
+      />
+      <button type="submit">Submit</button>
+    </form>
+    <hr />
+    <form hx-post="/store" hx-swap="none">
+      <input
+        id="title"
+        name="title"
+        type="text"
+        hx-post="/validate"
+        hx-trigger="change"
+        hx-sync="closest form:abort"
+        hx-swap="none"
+      />
+      <button type="submit">Submit</button>
+    </form>
+    <hr />
+    <button id="request-button" hx-post="/example">Issue Request</button>
+    <button onclick="htmx.trigger('#request-button', 'htmx:abort')">
+      Cancel Request
+    </button>
   </body>
 </html>
